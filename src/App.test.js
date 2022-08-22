@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { screen } from '@testing-library/react'
+//
+import { renderApp } from './test-utils'
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe('<App />', () => {
+  renderApp()
+
+  it('renders the header', () => {
+    const headerElement = screen.getByRole('heading', { level: 1})
+    expect(headerElement).toHaveTextContent(/GitHub Repositories/i)
+  })
+})
