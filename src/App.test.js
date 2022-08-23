@@ -1,9 +1,8 @@
-import { screen } from '@testing-library/react'
-//
-import { renderApp } from './test-utils'
+import { render, screen } from './test-utils'
+import App from './App'
 
 describe('<App />', () => {
-  renderApp()
+  render(<App />)
 
   it('renders the header', () => {
     const headerElement = screen.getByRole('heading', { level: 1})

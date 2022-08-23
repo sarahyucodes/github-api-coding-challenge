@@ -23,7 +23,8 @@ const searchSlice = createSlice({
   initialState: initialState,
   reducers: {
     removeAllResults: searchAdapter.removeAll,
-    resetSearchStatus: state => { state.status = 'idle' }
+    resetSearchStatus: state => { state.status = 'idle' },
+    setSearchStatusFailed: state => { state.status = 'failed' }
   },
   extraReducers: builder => {
     builder
@@ -35,13 +36,12 @@ const searchSlice = createSlice({
           searchAdapter.setAll(state, action.payload.items.map(item => {
               return {
                   id: item.id,
-                  name: item.name,
-                  description: item.description,
-                  html_url: item.html_url,
-                  url: item.url,
+                  fullName: item.full_name,
+                  stargazersCount: item.stargazers_count,
                   language: item.language,
-                  stargazers_count: item.stargazers_count,
-                  created_at: item.created_at
+                  url: item.url,
+                  createdAt: item.created_at,
+                  description: item.description,
               }
           }))
       })
@@ -58,7 +58,8 @@ export const {
 
 export const {
   removeAllResults,
-  resetSearchStatus
+  resetSearchStatus,
+  setSearchStatusFailed
  } = searchSlice.actions
 
 export default searchSlice.reducer
