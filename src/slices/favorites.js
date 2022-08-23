@@ -1,7 +1,7 @@
 import { 
   createSlice, 
   createAsyncThunk, 
-  createEntityAdapter 
+  createEntityAdapter
 } from '@reduxjs/toolkit'
 //
 import { 
@@ -10,7 +10,9 @@ import {
   deleteFavorite
 } from '../api/favorites'
 
-const favoritesAdapter = createEntityAdapter()
+const favoritesAdapter = createEntityAdapter({
+  sortComparer: (a, b) => b.stargazersCount - a.stargazersCount // default sort by stars
+})
 
 const initialState = favoritesAdapter.getInitialState({
   fetchStatus: 'idle', // 'loading' | 'success' | 'failed'
@@ -69,6 +71,7 @@ const favoritesSlice = createSlice({
 })
 
 export const {
+  selectAll,
   selectIds,
   selectById
 } = favoritesAdapter.getSelectors(state => state.favorites)
