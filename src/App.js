@@ -1,6 +1,7 @@
 import React from 'react'
 //
 import { Search } from './components/search/Search'
+import { Favorites } from './components/favorites/Favorites'
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       </header>
       <main className='py-4'>
         <Search />
+        <Favorites />
       </main>
     </div>
   )
