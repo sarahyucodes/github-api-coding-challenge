@@ -1,11 +1,10 @@
 import React from 'react'
 import userEvent from '@testing-library/user-event'
 //
-import { render, cleanup, screen, waitFor } from '../test-utils'
-import { Search } from '../components/search/Search'
-import { fetchResults, setSearchStatusFailed } from '../slices/search'
+import { render, cleanup, screen, waitFor } from '../../test-utils'
+import { Search } from './Search'
+import { fetchResults, setSearchStatusFailed } from '../../slices/search'
 import { act } from 'react-dom/test-utils'
-import { wait } from '@testing-library/user-event/dist/utils'
 
 let store 
 let container
@@ -77,14 +76,6 @@ describe('<Search />', () => {
     expect(errorMessage).toBeInTheDocument()
   })
 
-  it('should display 5 results for the search term', async () => {
-    const query = 'tetris'
-
-    act(() => {
-      store.dispatch(fetchResults(query))
-    })
-
-    const searchResults = await store.getState().search
-    console.log(searchResults)
-  })
+  it.todo('should fetch results for the search term')
+  it.todo('should clear results and reset search status if search term is empty');
 })
