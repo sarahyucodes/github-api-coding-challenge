@@ -30,7 +30,10 @@ export const FavoriteRepo = ({ favoriteId }) => {
       <span className='col-span-2 justify-self-end'>{language}</span>
       <span className='col-span-2 justify-self-end'>{stargazersCount} Stars</span>
       <span className='col-span-2 justify-self-end'>
-        <button className='border rounded px-2 py-1' onClick={handleRemove}>
+        <button 
+          onClick={handleRemove}
+          className='border rounded px-2 py-1 w-20 hover:border-blue-700 hover:text-blue-700' 
+        >
           Remove
         </button>
       </span>

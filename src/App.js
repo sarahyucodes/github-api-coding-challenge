@@ -5,7 +5,7 @@ import { Favorites } from './components/favorites/Favorites'
 
 const App = () => {
   return (
-    <div className='container max-w-screen-lg mx-auto px-4 py-10'>
+    <div className='container max-w-screen-lg mx-auto px-4 py-10 text-gray-700'>
       <header className='py-4'>
         <h1 className='text-2xl'>GitHub Repositories</h1>
       </header>
