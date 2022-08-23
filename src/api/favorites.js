@@ -5,3 +5,15 @@ export const getFavorites = async () => {
 
   return response.json()
 }
+
+export const postFavorite = async (repo) => {
+  let response = await fetch('http://localhost:8080/repo/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: repo
+  })
+
+  return response.json()
+}

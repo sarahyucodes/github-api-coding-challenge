@@ -6,20 +6,20 @@ import { fetchFavorites, selectAllFavorites } from '../../slices/favorites'
 export const Favorites = () => {
   const dispatch = useDispatch()
 
-  const status = useSelector(state => state.favorites.status)
-  const error = useSelector(state => state.favorites.error)
+  const fetchStatus = useSelector(state => state.favorites.fetchStatus)
+  const fetchError = useSelector(state => state.favorites.fetchError)
   const favorites = useSelector(selectAllFavorites)
 
   useEffect(() => {
     dispatch(fetchFavorites())
-  }, [])
+  }, [dispatch])
 
   const renderContent = () => {
-    if (status === 'loading') {
+    if (fetchStatus === 'loading') {
       return <p>Loading...</p>
-    } else if (status === 'failed') {
-      return <p>{error}</p>
-    } else if (status ==='success') {
+    } else if (fetchStatus === 'failed') {
+      return <p>{fetchError}</p>
+    } else if (fetchStatus ==='success') {
       if (favorites.length === 0) {
         return <p>You don't have any favorites saved!</p>
       } else {
@@ -27,7 +27,9 @@ export const Favorites = () => {
           <ul>
             {
               favorites.map(item => {
-                <li key={item.id}>{item.fullName}</li>
+                return (
+                  <li key={item.id}>{item.fullName}</li>
+                )
               })
             }
           </ul>
