@@ -28,9 +28,7 @@ const searchSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchResults.pending, (state, action) => {
-          state.status = 'loading'
-      })
+      .addCase(fetchResults.pending, (state, action) => { state.status = 'loading' })
       .addCase(fetchResults.fulfilled, (state, action) => {
           state.status = 'success'
           searchAdapter.setAll(state, action.payload.items)
@@ -43,7 +41,8 @@ const searchSlice = createSlice({
 })
 
 export const {
-  selectAll: selectAllSearch
+  selectIds,
+  selectById
 } = searchAdapter.getSelectors(state => state.search)
 
 export const {
