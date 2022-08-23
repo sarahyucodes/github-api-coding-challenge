@@ -1,14 +1,15 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit'
 //
 import { getFavorites, postFavorite } from '../api/favorites'
 
-const initialState = {
-  data: [],
+const favoritesAdapter = createEntityAdapter()
+
+const initialState = favoritesAdapter.getInitialState({
   fetchStatus: 'idle', // 'loading' | 'success' | 'failed'
   fetchError: null,
   saveStatus: 'idle', // 'loading' | 'success' | 'failed'
   saveError: null
-}
+})
 
 export const fetchFavorites = createAsyncThunk('favorites/fetchFavorites', async () => {
   const response = await getFavorites()
@@ -33,7 +34,8 @@ const favoritesSlice = createSlice({
       })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
           state.fetchStatus = 'success'
-          state.data = action.payload.repos
+          favoritesAdapter.setAll(state, action.payload.repos)
+
       })
       .addCase(fetchFavorites.rejected, (state, action) => {
           state.fetchStatus = 'failed'
@@ -44,7 +46,6 @@ const favoritesSlice = createSlice({
       })
       .addCase(saveFavorite.fulfilled, (state, action) => {
         state.saveStatus = 'success'
-        fetchFavorites()
       })
       .addCase(saveFavorite.rejected, (state, action) => {
         state.saveStatus = 'failed'
@@ -53,6 +54,8 @@ const favoritesSlice = createSlice({
   }
 })
 
-export const selectAllFavorites = state => state.favorites.data
+export const {
+  selectAll: selectAllFavorites
+} = favoritesAdapter.getSelectors(state => state.favorites)
 
 export default favoritesSlice.reducer

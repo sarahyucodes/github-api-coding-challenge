@@ -31,12 +31,12 @@ export const Search = () => {
 
   const handleSelect = item => {
     const formattedItem = {
-      "id": item.id.toString(),
-      "fullName": item.fullName,
-      "createdAt": item.createdAt,
-      "stargazersCount": item.stargazersCount,
-      "language": item.language,
-      "url": item.url
+      id: item.id.toString(),
+      fullName: item.full_name,
+      createdAt: item.created_at,
+      stargazersCount: item.stargazers_count,
+      language: item.language,
+      url: item.url
     }
 
     dispatch(saveFavorite(JSON.stringify(formattedItem)))
@@ -63,10 +63,10 @@ export const Search = () => {
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                       </svg>
-                      <span className='ml-2'>{result.fullName}</span>
+                      <span className='ml-2'>{result.full_name}</span>
                     </span>
                     <span className='col-span-2 text-xs justify-self-end'>{result.language}</span>
-                    <span className='col-span-2 text-xs justify-self-end'>{result.stargazersCount} Stars</span>
+                    <span className='col-span-2 text-xs justify-self-end'>{result.stargazers_count} Stars</span>
                   </div>
                   <div className='text-xs pt-2 pl-2 ml-5'>{result.description}</div>
                 </li>

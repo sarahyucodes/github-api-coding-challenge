@@ -33,17 +33,7 @@ const searchSlice = createSlice({
       })
       .addCase(fetchResults.fulfilled, (state, action) => {
           state.status = 'success'
-          searchAdapter.setAll(state, action.payload.items.map(item => {
-              return {
-                  id: item.id,
-                  fullName: item.full_name,
-                  stargazersCount: item.stargazers_count,
-                  language: item.language,
-                  url: item.url,
-                  createdAt: item.created_at,
-                  description: item.description,
-              }
-          }))
+          searchAdapter.setAll(state, action.payload.items)
       })
       .addCase(fetchResults.rejected, (state, action) => {
           state.status = 'failed'
