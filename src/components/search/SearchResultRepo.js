@@ -13,32 +13,24 @@ export const SearchResultRepo = ({ repoId }) => {
   const repoExistsInFavorites = favoriteIds.indexOf(repoId.toString()) > -1
 
   const handleSelect = () => {
-    if (repoExistsInFavorites) {
-      console.log('You already saved this repo.')
-      return
+    if (!repoExistsInFavorites && favoriteIds.length < 10) {
+      const formattedItem = {
+        id: repo.id.toString(),
+        fullName: repo.full_name,
+        createdAt: repo.created_at,
+        stargazersCount: repo.stargazers_count,
+        language: repo.language,
+        url: repo.url
+      }
+  
+      dispatch(saveFavorite(JSON.stringify(formattedItem)))
     }
-
-    if (favoriteIds.length === 10) {
-      console.log('You can only save up to 10 repos.')
-      return
-    }
-
-    const formattedItem = {
-      id: repo.id.toString(),
-      fullName: repo.full_name,
-      createdAt: repo.created_at,
-      stargazersCount: repo.stargazers_count,
-      language: repo.language,
-      url: repo.url
-    }
-
-    dispatch(saveFavorite(JSON.stringify(formattedItem)))
   }
 
   return  (
     <li
       tabIndex={0}
-      className='grid grid-cols-12 gap-x-2 items-center my-1 last-of-type:mb-0 p-2 rounded-lg text-sm hover:bg-gray-100 focus:bg-gray-100'
+      className='grid grid-cols-12 gap-x-2 items-center my-1 last-of-type:mb-0 p-2 rounded-lg hover:bg-gray-100 focus:bg-gray-100'
     >
       <span className='col-span-6'>{repo.full_name}</span>
       <span className='col-span-2 justify-self-end'>{repo.language}</span>

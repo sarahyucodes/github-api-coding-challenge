@@ -32,9 +32,9 @@ export const Search = () => {
 
   const renderResults = () => {
     if (searchStatus === 'loading') {
-      return <p className='loading-message p-2 text-sm'>Loading...</p>
+      return <p className='loading-message p-2'>Loading...</p>
     } else if (searchStatus === 'failed') {
-      return <p className='error-message p-2 text-sm'>{searchError}</p>
+      return <p className='error-message p-2'>{searchError}</p>
     } else if (searchStatus === 'success') {
       return (
         <ul className='py-1'>
@@ -45,7 +45,7 @@ export const Search = () => {
   }
 
   return (
-    <div className='border p-2 rounded-lg text-sm'>
+    <div className='border p-2 rounded-lg'>
       <input
         type='search'
         aria-label='search'

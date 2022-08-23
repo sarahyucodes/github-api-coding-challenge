@@ -24,7 +24,7 @@ export const FavoriteRepo = ({ favoriteId }) => {
   }
 
   return (
-    <li className='py-2 grid grid-cols-12 gap-x-2 items-center text-sm border-b last-of-type:border-b-0'>
+    <li className='py-2 grid grid-cols-12 gap-x-2 items-center border-b last-of-type:border-b-0'>
       <span className='col-span-4'>{fullName}</span>
       <span className='col-span-2 justify-self-end'>{formattedDate}</span>
       <span className='col-span-2 justify-self-end'>{language}</span>

@@ -26,18 +26,29 @@ export const Favorites = () => {
         return <p>You don't have any favorites saved!</p>
       } else {
         return (
-          <ul>
-            { favoriteIds.map(favoriteId => <FavoriteRepo key={favoriteId} favoriteId={favoriteId} />) }
-          </ul>
+          <div>
+            <div className='grid grid-cols-12 gap-x-2 items-center py-2 border-b font-medium'>
+              <div className='col-span-4'>Name</div>
+              <div className='col-span-2 justify-self-end'>Date Created</div>
+              <div className='col-span-2 justify-self-end'>Language</div>
+              <div className='col-span-2 justify-self-end'>Stars</div>
+            </div>
+            <ul>
+              { favoriteIds.map(favoriteId => <FavoriteRepo key={favoriteId} favoriteId={favoriteId} />) }
+            </ul>
+          </div>
         )
       }
     }
   }
 
   return (
-    <section className='Favorites py-10'>
-      <h2 className='text-xl'>My Favorite Repositories</h2>
-      <div className='py-2'>{renderContent()}</div>
+    <section className='py-10'>
+      <div className='flex justify-between items-center'>
+        <h2 className='text-xl'>My Favorite Repositories ({favoriteIds.length})</h2>
+        {favoriteIds.length === 10 ? <p className='text-xs font-medium text-orange-600'>*You can only save up to 10 repos!</p> : null}
+      </div>
+      <div className='py-4'>{renderContent()}</div>
     </section>
   )
 }
