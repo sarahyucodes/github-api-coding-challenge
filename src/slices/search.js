@@ -4,7 +4,7 @@ import {
   createAsyncThunk
 } from '@reduxjs/toolkit'
 //
-import { search } from '../api/search'
+import { search } from '../services/search'
 
 const searchAdapter = createEntityAdapter()
 

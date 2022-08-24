@@ -8,7 +8,7 @@ import {
   getFavorites, 
   postFavorite,
   deleteFavorite
-} from '../api/favorites'
+} from '../services/favorites'
 
 const favoritesAdapter = createEntityAdapter({
   sortComparer: (a, b) => b.stargazersCount - a.stargazersCount // default sort by stars
