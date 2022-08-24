@@ -11,7 +11,7 @@ Search your favorite repositories from GitHub and save them to a reposerver.
 ## Run in Docker
 1. Clone this project and ```cd``` into it
 2. ```docker-compose up```
-3. backend should be listening at :8080, frontend should be running at :3000
+3. The app should be running at :3000, with the backend listening at :8080
 
 The image for this application is here: https://hub.docker.com/repository/docker/sarahyucodes/github-api-coding-challenge
 
