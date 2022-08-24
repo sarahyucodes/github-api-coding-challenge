@@ -11,6 +11,10 @@ import {
 import { SearchResultRepo } from './SearchResultRepo'
 import { Error } from '../error/Error'
 
+const StatusMessage = ({ message, classNames }) => {
+  return <p className={`${classNames} p-2`}>{message}</p>
+}
+
 export const Search = () => {
   const dispatch = useDispatch()
 
@@ -41,15 +45,19 @@ export const Search = () => {
 
   const renderResults = () => {
     if (searchStatus === 'loading') {
-      return <p className='loading-message p-2'>Loading...</p>
+      return <StatusMessage message='Loading...' />
     } else if (searchStatus === 'failed') {
-      return <p className='error-message p-2'>{searchError}</p>
+      return <StatusMessage message={searchError} classNames='error-message' />
     } else if (searchStatus === 'success') {
-      return (
-        <ul className='py-1'>
-          { resultIds.map(repoId => <SearchResultRepo key={repoId} repoId={repoId} />) }               
-        </ul>
-      )
+      if (resultIds.length === 0) {
+        return <StatusMessage message='No results found.' />
+      } else {
+        return (
+          <ul className='py-1'>
+            { resultIds.map(repoId => <SearchResultRepo key={repoId} repoId={repoId} />) }               
+          </ul>
+        )
+      }
     }
   }
 

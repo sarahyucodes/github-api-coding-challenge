@@ -7,6 +7,10 @@ import { FavoritesList } from './FavoritesList'
 import { SortFavorites } from './SortFavorites'
 import { Error } from '../error/Error'
 
+const StatusMessage = ({ message }) => {
+  return <p className='py-2'>{message}</p>
+}
+
 export const Favorites = () => {
   const dispatch = useDispatch()
   
@@ -26,12 +30,12 @@ export const Favorites = () => {
 
   const renderContent = () => {
     if (fetchStatus === 'loading') {
-      return <p>Loading...</p>
+      return <StatusMessage message='Loading...' />
     } else if (fetchStatus === 'failed') {
-      return <p>{fetchError}</p>
+      return <StatusMessage message={fetchError} />
     } else if (fetchStatus ==='success') {
       if (favoriteIds.length === 0) {
-        return <p>You don't have any favorites saved!</p>
+        return <StatusMessage message={`You don't have any favorites saved!`} />
       } else {
         return <FavoritesList sortBy={sortBy} sortOptions={sortOptions} />
       }
