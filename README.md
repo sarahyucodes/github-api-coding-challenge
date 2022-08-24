@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# GitHub API Coding Challenge
+Search your favorite repositories from GitHub and save them to a reposerver.
+- [x] searches the [GitHub API](https://docs.github.com/en/rest)
+- [x] autocomplete search
+- [x] displays name, description, language, and stars visible
+- [x] save up to 10 repos to the reposerver
+- [x] can remove saved repos from the reposever
+- [x] list view of saved repos with options to sort by date or stars
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Technology
+I built this project using [create-react-app](https://create-react-app.dev/) and [React Redux](https://react-redux.js.org/)/[React Toolkit](https://redux-toolkit.js.org/). For styling, I used [Tailwind CSS](https://tailwindcss.com/), which I like for its utility cases and how quickly it allows me to spin up simple and clean user interfaces.
 
-In the project directory, you can run:
 
-### `npm start`
+## Assumptions & Notes
+- I am only showing the first 5 results from the autocomplete search, sorted in descending order by stars. Since the requirement was to be able to select repositories from a dropdown, I did not want to make the dropdown too tall. I'm assuming that the user would be searching for popular repositories, and if not, hopefully a more exact search will bring up the intended repository in the results.
+- In order to avoid rate limiting issues with the GitHub API, I implemented a debounce function so that the we don't make API calls for every character typed.
+- Saving a repositories from the search dropdown turns the "Save" button blue, changes the text to "Saved", and disables the button so that the user cannot try to save the same repository twice.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Third Party Libraries
+### [octokit/plugin-rest-endpoing-methods](https://github.com/octokit/plugin-rest-endpoint-methods.js/blob/master/docs/users/getAuthenticated.md)
+I found this to be an easy way to access GitHub API endpoints. This library utilizes recommend best practices and has 100% test coverage.
 
-### `npm test`
+### [Tailwind CSS](https://tailwindcss.com/)
+I like using Tailwind CSS for its utility cases. It allows me to quickly spin up simple and clean web applications.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### [date-fns]()
+Simple way to parse ISO date strings and format them in a readable way.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Known Issues
+- Not sure why fetchFavorites() is getting called twice
+- Tests
