@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 //
 import { 
@@ -13,21 +13,27 @@ import { SearchResultRepo } from './SearchResultRepo'
 export const Search = () => {
   const dispatch = useDispatch()
 
+  let typingTimer = null
+
   const searchStatus = useSelector(state => state.search.status)
   const searchError = useSelector(state => state.search.error)
   const resultIds = useSelector(selectIds)
+
+  useEffect(() => {
+    clearTimeout(typingTimer)
+  }, [typingTimer])
   
   const handleChange = searchTerm => {
-    if (searchTerm.length > 2) {
-      setTimeout(() => {
-        dispatch(fetchResults(searchTerm))
-      }, 300)
-    }
-
     if (searchTerm.length === 0) {
       dispatch(removeAllResults())
       dispatch(resetSearchStatus())
     }
+
+    clearTimeout(typingTimer)
+
+    typingTimer = setTimeout(() => {
+      if (searchTerm) dispatch(fetchResults(searchTerm))
+    }, 500)
   }
 
   const renderResults = () => {

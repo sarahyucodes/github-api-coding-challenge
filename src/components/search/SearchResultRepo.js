@@ -30,12 +30,12 @@ export const SearchResultRepo = ({ repoId }) => {
   return  (
     <li
       tabIndex={0}
-      className='grid grid-cols-12 gap-x-2 items-center my-1 last-of-type:mb-0 p-2 rounded-lg hover:bg-gray-100 focus:bg-gray-100'
+      className='grid grid-cols-12 gap-x-2 items-center my-1 last-of-type:mb-0 p-2 rounded-lg hover:bg-gray-100 focus:bg-gray-100 text-xs md:text-sm'
     >
       <span className='col-span-6'>{repo.full_name}</span>
-      <span className='col-span-2 justify-self-end'>{repo.language}</span>
-      <span className='col-span-2 justify-self-end'>{repo.stargazers_count} Stars</span>
-      <span className='col-span-2 justify-self-end'>
+      <span className='hidden md:block col-span-2 justify-self-end'>{repo.language}</span>
+      <span className='hidden md:block col-span-2 justify-self-end'>{repo.stargazers_count} Stars</span>
+      <span className='col-span-6 md:col-span-2 justify-self-end'>
         <button 
           onClick={handleSelect} 
           disabled={repoExistsInFavorites} 
@@ -44,7 +44,7 @@ export const SearchResultRepo = ({ repoId }) => {
           {repoExistsInFavorites ? 'Saved' : 'Save'}
         </button>
       </span>
-      <div className='col-span-6'>{repo.description}</div>
+      <div className='hidden md:block md:col-span-6'>{repo.description}</div>
     </li>
   )
 }

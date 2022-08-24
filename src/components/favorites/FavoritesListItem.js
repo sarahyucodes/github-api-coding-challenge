@@ -4,7 +4,7 @@ import { parseISO, format } from 'date-fns'
 //
 import { selectById, removeFavorite } from '../../slices/favorites'
 
-export const FavoriteRepo = ({ favoriteId }) => {
+export const FavoritesListItem = ({ favoriteId, gridClasses }) => {
   const dispatch = useDispatch()
 
   const favorite = useSelector(state => selectById(state, favoriteId))
@@ -24,12 +24,12 @@ export const FavoriteRepo = ({ favoriteId }) => {
   }
 
   return (
-    <li className='py-2 grid grid-cols-12 gap-x-2 items-center border-b last-of-type:border-b-0'>
-      <span className='col-span-4'>{fullName}</span>
-      <span className='col-span-2 justify-self-end'>{formattedDate}</span>
-      <span className='col-span-2 justify-self-end'>{language}</span>
-      <span className='col-span-2 justify-self-end'>{stargazersCount} Stars</span>
-      <span className='col-span-2 justify-self-end'>
+    <li className={`${gridClasses.grid} last-of-type:border-b-0`}>
+      <span className={`${gridClasses.gridItem.name} break-all`}>{fullName}</span>
+      <span className={gridClasses.gridItem.other.default}>{formattedDate}</span>
+      <span className={gridClasses.gridItem.other.mobileHidden}>{language}</span>
+      <span className={gridClasses.gridItem.other.default}>{stargazersCount}</span>
+      <span className={gridClasses.gridItem.other.default}>
         <button 
           onClick={handleRemove}
           className='border rounded px-2 py-1 w-20 hover:border-blue-700 hover:text-blue-700' 
