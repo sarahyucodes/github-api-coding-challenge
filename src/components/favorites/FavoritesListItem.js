@@ -24,7 +24,7 @@ export const FavoritesListItem = ({ favoriteId, gridClasses }) => {
   }
 
   return (
-    <li className={`${gridClasses.grid} last-of-type:border-b-0`}>
+    <li className={`${gridClasses.grid} last-of-type:border-b-0 text-xs md:text-sm`}>
       <span className={`${gridClasses.gridItem.name} break-all`}>{fullName}</span>
       <span className={gridClasses.gridItem.other.default}>{formattedDate}</span>
       <span className={gridClasses.gridItem.other.mobileHidden}>{language}</span>

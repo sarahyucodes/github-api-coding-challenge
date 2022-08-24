@@ -43,12 +43,15 @@ export const removeFavorite = createAsyncThunk('favorites/removeFavorite', async
 const favoritesSlice = createSlice({
   name: 'favorites',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setSaveError: (state, action) => { state.saveError = action.payload}
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchFavorites.pending, (state) => { state.fetchStatus = 'loading' })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
           state.fetchStatus = 'success'
+          state.fetchError = null
           favoritesAdapter.setAll(state, action.payload.repos)
       })
       .addCase(fetchFavorites.rejected, (state, action) => {
@@ -56,13 +59,20 @@ const favoritesSlice = createSlice({
           state.fetchError = action.error.message
       }) 
       .addCase(saveFavorite.pending, (state) => { state.saveStatus = 'loading' })
-      .addCase(saveFavorite.fulfilled, (state, action) => { state.saveStatus = 'success' })
+      .addCase(saveFavorite.fulfilled, (state, action) => { 
+        state.saveStatus = 'success' 
+        state.saveError = null
+      })
       .addCase(saveFavorite.rejected, (state, action) => {
         state.saveStatus = 'failed'
         state.saveError = action.error.message
       })
       .addCase(removeFavorite.pending, (state) => { state.removeStatus = 'loading' })
-      .addCase(removeFavorite.fulfilled, (state, action) => { state.removeStatus = 'success' })
+      .addCase(removeFavorite.fulfilled, (state, action) => { 
+        state.removeStatus = 'success' 
+        state.removeError = null
+        state.saveError = null
+      })
       .addCase(removeFavorite.rejected, (state, action) => {
         state.removeStatus = 'failed'
         state.removeError = action.error.message
@@ -75,5 +85,7 @@ export const {
   selectIds,
   selectById
 } = favoritesAdapter.getSelectors(state => state.favorites)
+
+export const { setSaveError } = favoritesSlice.actions
 
 export default favoritesSlice.reducer

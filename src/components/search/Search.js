@@ -9,6 +9,7 @@ import {
 } from '../../slices/search'
 
 import { SearchResultRepo } from './SearchResultRepo'
+import { Error } from '../error/Error'
 
 export const Search = () => {
   const dispatch = useDispatch()
@@ -18,6 +19,8 @@ export const Search = () => {
   const searchStatus = useSelector(state => state.search.status)
   const searchError = useSelector(state => state.search.error)
   const resultIds = useSelector(selectIds)
+
+  const saveError = useSelector(state => state.favorites.saveError)
 
   useEffect(() => {
     clearTimeout(typingTimer)
@@ -51,7 +54,9 @@ export const Search = () => {
   }
 
   return (
-    <div className='border p-2 rounded-lg'>
+    <div className='flex flex-col'>
+      <Error error={saveError} classNames='py1' />
+      <div className='border p-2 rounded-lg'>
       <input
         type='search'
         aria-label='search'
@@ -63,6 +68,7 @@ export const Search = () => {
       <div>
         {renderResults()}
       </div>
+    </div>
     </div>
   )
 }

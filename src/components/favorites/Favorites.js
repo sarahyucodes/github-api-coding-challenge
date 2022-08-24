@@ -5,7 +5,7 @@ import { fetchFavorites, selectIds } from '../../slices/favorites'
 
 import { FavoritesList } from './FavoritesList'
 import { SortFavorites } from './SortFavorites'
-
+import { Error } from '../error/Error'
 
 export const Favorites = () => {
   const dispatch = useDispatch()
@@ -17,6 +17,8 @@ export const Favorites = () => {
   const fetchStatus = useSelector(state => state.favorites.fetchStatus)
   const fetchError = useSelector(state => state.favorites.fetchError)
   const favoriteIds = useSelector(selectIds)
+
+  const removeError = useSelector(state => state.favorites.removeError)
 
   useEffect(() => {
     dispatch(fetchFavorites())
@@ -40,7 +42,7 @@ export const Favorites = () => {
     <section className='py-10'>
       <div className='flex justify-between items-center'>
         <h2 className='text-xl'>My Favorite Repositories ({ favoriteIds.length })</h2>
-        {favoriteIds.length === 10 ? <p className='text-xs font-medium text-orange-600'>*You can only save up to 10 repos!</p> : null}
+        <Error error={removeError} />
       </div>
       {favoriteIds.length > 0 ? <SortFavorites sortOptions={sortOptions} sortBy={sortBy} setSortBy={setSortBy} /> : null}
       <div className='py-4'>
