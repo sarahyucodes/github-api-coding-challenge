@@ -13,6 +13,8 @@ Search your favorite repositories from GitHub and save them to a reposerver.
 2. ```docker-compose up```
 3. backend should be listening at :8080, frontend should be running at :3000
 
+The image for this application is here: https://hub.docker.com/repository/docker/sarahyucodes/github-api-coding-challenge
+
 
 ## Technology
 I built this project using [create-react-app](https://create-react-app.dev/) and [React Redux](https://react-redux.js.org/)/[React Toolkit](https://redux-toolkit.js.org/). For styling, I used [Tailwind CSS](https://tailwindcss.com/), which I like for its utility cases and how quickly it allows me to spin up simple and clean user interfaces. For testing, I am using [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/) (pre-packaged with create-react-app).
