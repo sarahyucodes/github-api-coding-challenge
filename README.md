@@ -22,9 +22,6 @@ I built this project using [create-react-app](https://create-react-app.dev/) and
 ### [octokit/plugin-rest-endpoing-methods](https://github.com/octokit/plugin-rest-endpoint-methods.js/blob/master/docs/users/getAuthenticated.md)
 I found this to be an easy way to access GitHub API endpoints. This library utilizes recommend best practices and has 100% test coverage.
 
-### [Tailwind CSS](https://tailwindcss.com/)
-I like using Tailwind CSS for its utility cases. It allows me to quickly spin up simple and clean web applications.
-
 ### [date-fns]()
 Simple way to parse ISO date strings and format them in a readable way.
 
