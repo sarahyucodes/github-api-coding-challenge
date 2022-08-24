@@ -36,4 +36,4 @@ Simple way to parse ISO date strings and format them in a readable way.
 ## Known Issues
 - Not sure why fetchFavorites() is getting called twice.
 - Could definitely spend more time refactoring and optimizing performance, prevent unncessary re-rendering of components, etc.
-- Currently at 56.98% test coverage; admittedly, I do not have much experience writing tests and could not figure out how to write integration tests for this app given the time restraints of this coding challenge.
+- Currently at 56.98% test coverage; admittedly, I do not have much experience writing tests and could not figure out how to write integration tests for this app given the time restraints of this coding challenge. I have manually tested the logic and functionality of my application as well as the basic responsiveness of it.
