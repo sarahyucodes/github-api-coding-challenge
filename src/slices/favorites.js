@@ -44,6 +44,7 @@ const favoritesSlice = createSlice({
   name: 'favorites',
   initialState: initialState,
   reducers: {
+    setFetchError: (state, action) => { state.fetchError = action.payload },
     setSaveError: (state, action) => { state.saveError = action.payload}
   },
   extraReducers: builder => {
@@ -86,6 +87,6 @@ export const {
   selectById
 } = favoritesAdapter.getSelectors(state => state.favorites)
 
-export const { setSaveError } = favoritesSlice.actions
+export const { setFetchError, setSaveError } = favoritesSlice.actions
 
 export default favoritesSlice.reducer

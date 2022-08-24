@@ -1,8 +1,7 @@
 import React from 'react'
-import userEvent from '@testing-library/user-event'
 //
-import { render, cleanup, screen } from '../../test-utils'
-import { SearchResultRepo } from './SearchResultRepo'
+import { render, cleanup, screen } from '../test-utils'
+import { SearchResultRepo } from '../components/search/SearchResultRepo'
 
 let store 
 let container

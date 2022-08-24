@@ -1,10 +1,9 @@
 import React from 'react'
 import userEvent from '@testing-library/user-event'
 //
-import { render, cleanup, screen, waitFor } from '../../test-utils'
-import { Search } from './Search'
-import { fetchResults, setSearchStatusFailed } from '../../slices/search'
-import { act } from 'react-dom/test-utils'
+import { render, cleanup, screen, act } from '../test-utils'
+import { Search } from '../components/search/Search'
+import { fetchResults, setSearchStatusFailed } from '../slices/search'
 
 let store 
 let container
@@ -14,6 +13,7 @@ beforeEach(() => {
   store = rootStore
   container = elementContainer
 })
+
 afterEach(() => cleanup())
 
 describe('<Search />', () => {  
@@ -35,15 +35,6 @@ describe('<Search />', () => {
     const searchElement = screen.getByRole('searchbox')
     await userEvent.type(searchElement, query)
     expect(searchElement).toHaveValue(query)
-
-    // act(() => {
-    //   store.dispatch(fetchResults(query))
-    // })
-
-    // const searchResults = store.getState()
-    // console.log(searchResults)
-    
-    // // await waitFor(() => expect(searchResults.length).toBeGreaterThan(0))
   })
 
   it('should display a loading message while search request is pending', async () => {
@@ -76,6 +67,7 @@ describe('<Search />', () => {
     expect(errorMessage).toBeInTheDocument()
   })
 
+  it.todo('should clear results and reset search status if search term is empty')
   it.todo('should fetch results for the search term')
-  it.todo('should clear results and reset search status if search term is empty');
+  it.todo('should render list of search results')
 })
