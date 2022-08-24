@@ -11,6 +11,7 @@ services:
 
   frontend:
     image: docker.io/sarahyucodes/github-api-coding-challenge:latest
+    container_name: frontend
     expose:
       - 3000
     ports:
